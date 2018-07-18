@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> inverse binary tree</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+// var tree = { left: null, right: { left: { value: 6 }, right: { value: 9 }, value: 7 }, value: 4 }
+var tree = {
+  left: {
+    left: {value: 1},
+    right: {value: 3},
+    value: 2
+  },
+  right: {
+    left: {value: 6},
+    right: {value: 9},
+    value: 7
+  },
+  value: 4
+}
+
+// Recursive function to return an inverted tree
+var invertTree = function(root) {
+
+    if(root !== null){
+        var tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+        invertTree(root.left);
+        invertTree(root.right);
+    }
+     return root;
+
+};
+
+// Inverted Tree
+//      4
+//    /   \
+//   7     2
+//  / \   / \
+// 9   6 3   1
+
+// Log the original tree to the console, followed by the inverted tree
+// console.log( tree ,invertTree(tree));
+console.log(JSON.parse(JSON.stringify(tree)),invertTree(tree));
+// JSON.parse(JSON.stringify(tree)),
+  </script>
+
+</body>
+</html>
