@@ -1,0 +1,26 @@
+<script type="text/javascript">
+	function binarySearch(input,keyValue){
+		//input="1,2,5,23,45,56";
+		array1=input.split(",");
+		n=array1.length;
+		left=0;
+		right=n-1;
+		//keyValue=5;
+		while(left<=right){
+			mid=(left+right)/2;
+			if(keyValue<array1[Math.round(mid)]){
+				right=Math.round(mid)-1;
+			}else if(keyValue>array1[Math.round(mid)]){
+				left=Math.round(mid)+1;
+			}else{
+				//left=n;	
+				return Math.round(mid);			
+			}
+		}
+		return -1;
+        //console.log(right);
+	}
+	input="1,2,5,23,45,56";
+    keyValue=5;
+	console.log(binarySearch(input,keyValue));
+</script>
