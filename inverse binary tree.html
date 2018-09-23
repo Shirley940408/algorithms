@@ -6,24 +6,29 @@
 
 <body>
   <script type="text/javascript">
-// var tree = { left: null, right: { left: { value: 6 }, right: { value: 9 }, value: 7 }, value: 4 }
-var tree = {
-  left: {
-    left: {value: 1},
-    right: {value: 3},
-    value: 2
-  },
-  right: {
-    left: {value: 6},
-    right: {value: 9},
-    value: 7
-  },
-  value: 4
-}
-
+var tree = { left: "", right: { left: { value: 6 }, right: { value: 9 }, value: 7 }, value: 4 }
+// Oinginal Tree:
+//      4
+//    /   \
+//   2     7
+//  / \   / \
+// 1   3 6   9
+// var tree = {
+//   left: {
+//     left: {value: 1},
+//     right: {value: 3},
+//     value: 2
+//   },
+//   right: {
+//     left: {value: 6},
+//     right: {value: 9},
+//     value: 7
+//   },
+//   value: 4
+// }
+// console.log(tree.left);
 // Recursive function to return an inverted tree
-var invertTree = function(root) {
-
+var invertTreeLeetcode = function(root) {
     if(root !== null){
         var tmp = root.left;
         root.left = root.right;
@@ -32,7 +37,17 @@ var invertTree = function(root) {
         invertTree(root.right);
     }
      return root;
-
+};//accepted by leetcode，but it will not accept by your computer. For the base members do not have left and right.
+var invertTree = function(root) {
+    if(root&&(!(root.left==null)||!(root.right==null))){
+      //if()中的root判断完全是为了给LeetCode测试空的时候通过准备的。。。
+      var temp=root.right;
+      root.right=root.left;
+      root.left=temp;
+      invertTree(root.left);
+      invertTree(root.right);
+    }
+    return root;
 };
 
 // Inverted Tree
@@ -41,12 +56,17 @@ var invertTree = function(root) {
 //   7     2
 //  / \   / \
 // 9   6 3   1
-
 // Log the original tree to the console, followed by the inverted tree
 // console.log( tree ,invertTree(tree));
 console.log(JSON.parse(JSON.stringify(tree)),invertTree(tree));
-// JSON.parse(JSON.stringify(tree)),
+// if(""===null){
+//   console.log("yes");
+// }else{
+//   console.log("no");
+// }
   </script>
 
 </body>
 </html>
+
+
